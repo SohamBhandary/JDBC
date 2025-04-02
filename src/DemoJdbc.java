@@ -11,16 +11,25 @@ public class DemoJdbc {
         process the results
         close
         */
+        int sid=102;
+        String sname="Maxi";
+        int marks=48;
+
         String url="jdbc:postgresql://localhost:5432/Demo";
         String uname="postgres";
         String pass="0000";
-        String sql="update student set sname='Max' where sid=5";
+        String sql = "insert into student values (?,?,?)";
+
 //     //   Class.forName("org.postgresql.Driver");
 
         Connection con = DriverManager.getConnection(url,uname,pass);
         System.out.println("connection established");
-        Statement st =con.createStatement();
-       ResultSet rs=  st.executeQuery(sql);
+
+        PreparedStatement st =con.prepareStatement(sql);
+        st.setInt(1,sid);
+        st.setString(2,sname);
+        st.setInt(3,marks);
+     ;
 //        rs.next();
 //       String name= rs.getString("sname");
 //        System.out.println("Name is :"+ name);
