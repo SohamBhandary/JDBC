@@ -14,8 +14,8 @@ public class DemoJdbc {
         String url="jdbc:postgresql://localhost:5432/Demo";
         String uname="postgres";
         String pass="0000";
-        String sql="select * from student where sid=1";
-//        Class.forName("org.postgresql.Driver");
+        String sql="update student set sname='Max' where sid=5";
+//     //   Class.forName("org.postgresql.Driver");
 
         Connection con = DriverManager.getConnection(url,uname,pass);
         System.out.println("connection established");
@@ -24,12 +24,9 @@ public class DemoJdbc {
 //        rs.next();
 //       String name= rs.getString("sname");
 //        System.out.println("Name is :"+ name);
+       boolean status= st.execute(sql);
+        System.out.println(status);
 
-        while(rs.next()){
-            System.out.println(rs.getInt(1)) ;//fetching particular coloumn
-            System.out.println(rs.getString(2)) ;
-            System.out.println(rs.getInt(3)) ;
-        }
 
         con.close();
         System.out.println("connection closed");
